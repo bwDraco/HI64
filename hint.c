@@ -1,6 +1,7 @@
 /******************************************************************************/
 /* "HINT" -- Hierarchical INTegration.                                        */
 /* Copyright (C) 1994 by Iowa State University Research Foundation, Inc.      */
+/* Modified 2003 by Moritz Franosch (mail@Franosch.org)                       */
 /*                                                                            */
 /* This program is free software; you can redistribute it and/or modify       */
 /* it under the terms of the GNU General Public License as published by       */
@@ -19,7 +20,7 @@
 /* Refer to hint.h and typedefs.h for all-capitalized definitions.            */
 #include       "hint.h"    
 
-void main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     FILE    *curv;        /* Output file for QUIPS curve                      */
     char    filnm[80];    /* Output file name                                 */
@@ -61,11 +62,13 @@ void main(int argc, char *argv[])
             /* tlast, */       /* Time of last recorded trial                      */
             tscout;       /* Time for initial survey                          */
 
-    int     dbits,        /* Number of bits of accuracy for dmax              */
+    long     dbits,        /* Number of bits of accuracy for dmax              */
             ibits,        /* Number of bits for imax                          */
             i, j, k,      /* Loop counters                                    */
             laps,         /* Approximate number of laps in a trial            */
             memuse;       /* Amount of memory used, in bytes                  */
+
+    char*   suffix;       /* Suffix for data.suffix directory                 */
 
     printf("         _    _\n");
     printf("         |    |  _ _   _ _____ TM\n");
@@ -90,7 +93,11 @@ void main(int argc, char *argv[])
 #ifdef DEBUG
     curv = stdout;
 #else
-    sprintf(filnm,"data/%s",argv[0]);
+    suffix="";
+    if (argc>=2) {
+      suffix=argv[1];
+    }
+    sprintf(filnm,"data%s/%s",argv[1],argv[0]);
     if ((curv = fopen(filnm, "w")) == NULL)
     {
         printf("Could not open data file\n");
@@ -196,7 +203,7 @@ void main(int argc, char *argv[])
  /* This loop is the main loop driver of the HINT kernel.                     */
     for (t = 0, i = 0, n = NMIN, qpeak = 0, qprat = 1; 
         ((i < NSAMP) && (t < STOPTM) && (n < scx) && (qprat > STOPRT));
-        i++, n = ((int)(n * ADVANCE) > n)? (n * ADVANCE) : n + 1)
+        i++, n = ((long)(n * ADVANCE) > n)? (n * ADVANCE) : n + 1)
     {     
         printf(".");
         fflush(stdout);
@@ -207,8 +214,10 @@ void main(int argc, char *argv[])
         if (t == 0)
             t = tdelta;
 
-        if (eflag != NOERROR)
+        if (eflag != NOERROR) {
+	    printf("ERROR\n");
             break;
+	}
             
      /* Calculate QUIPS. We must add 1 to dmax, but do it in steps.           */
      /* This is to avoid overflow of dmax                                     */
@@ -221,7 +230,7 @@ void main(int argc, char *argv[])
         qpeak = MAX(qpeak, quips);
         qprat = quips / qpeak;
     }
-    memuse = (int)(qdata[i-1].n * (sizeof(RECT)+sizeof(DSIZE)+sizeof(ISIZE)));
+    memuse = (long)(qdata[i-1].n * (sizeof(RECT)+sizeof(DSIZE)+sizeof(ISIZE)));
     if ((qprat > STOPRT) && (eflag == NOMEM))
         printf("\nThis run was memory limited at %d subintervals -> %d bytes\n",
                                                  n, memuse);
@@ -230,7 +239,7 @@ void main(int argc, char *argv[])
 	memref = (DSREFS * sizeof(DSIZE) + ISREFS * sizeof(ISIZE)) * qdata[i-1].n;
 	memref /= (1024 * 1024);
 	bandwt = memref / qdata[i-1].t;
-    fprintf(curv,"%12.10lf %lf %lf %lf %10d %lf\n", 
+    fprintf(curv,"%12.10lf %lf %lf %lf %15ld %lf\n", 
             qdata[i-1].t, qdata[i-1].qp, qdata[i-1].delq,
             (double)qdata[i-1].n, memuse, bandwt);
     
@@ -258,11 +267,11 @@ void main(int argc, char *argv[])
 			delq = (double)dmax / gamut - 1;
             qdata[j].qp = delq / qdata[j].t + 1.0 / gamut / qdata[j].t;
         }
-        memuse = (int)(qdata[j].n * (sizeof(RECT)+sizeof(DSIZE)+sizeof(ISIZE)));
+        memuse = (long)(qdata[j].n * (sizeof(RECT)+sizeof(DSIZE)+sizeof(ISIZE)));
 		memref = (DSREFS * sizeof(DSIZE) + ISREFS * sizeof(ISIZE)) * qdata[j].n;
 		memref /= (1024 * 1024);
 		bandwt = memref / qdata[j].t;
-        fprintf(curv,"%12.10lf %lf %lf %lf %10d %lf\n", 
+        fprintf(curv,"%12.10lf %lf %lf %lf %15ld %lf\n", 
                 qdata[j].t, qdata[j].qp, qdata[j].delq,
                 (double)qdata[j].n, memuse, bandwt);
 

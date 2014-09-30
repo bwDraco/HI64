@@ -1,4 +1,4 @@
-#!/usr/bin/sh -f
+#!/bin/sh
 # Made by Rajat Todi 
 #
 # Assumption is that you have already DOUBLE and INT in the
@@ -11,11 +11,15 @@ date
 echo "Running for serial processor on different datatypes..."
 #
 #
-./DOUBLE > ./data/d1_out
-./INT > ./data/i1_out
-./SHORT > ./data/s1_out
-./FLOAT > ./data/f1_out
-./LONGLONG > ./data/l1_out
+mkdir data$1 || exit 1
+echo "double"
+./DOUBLE $1 > ./data$1/double.out
+echo "int"
+./INT $1 > ./data$1/int.out
+#./SHORT > ./data/s1_out
+echo "float"
+./FLOAT $1 > ./data$1/float.out
+#./LONGLONG > ./data/l1_out
 #
 #
 echo "FINISH FOR SERIAL"

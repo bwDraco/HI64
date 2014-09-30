@@ -1,6 +1,7 @@
 /******************************************************************************/
 /* "HINT" -- Hierarchical INTegration.                                        */
 /* Copyright (C) 1994 by Iowa State University Research Foundation, Inc.      */
+/* Modified 2003 by Moritz Franosch (mail@Franosch.org)                       */
 /*                                                                            */
 /* Files needed for use:                                                      */
 /*     * hint.c             ---- Driver source                                */
@@ -74,7 +75,7 @@
 /*      Adjustable Defines                                                    */
 /*      These may be adjusted according to the HINT rules.                    */
 /******************************************************************************/
-#define ADVANCE    1.2589     /* 1.2589 */ /* Multiplier. We use roughly 1 decibel step size. */
+#define ADVANCE    1.2589  /* 1.2589 */ /* Multiplier. We use roughly 1 decibel step size. */
                            /* Closer to 1.0 takes longer to run, but might    */
                            /* produce slightly higher net QUIPS.              */
 #define NCHUNK     4       /* Number of chunks for scatter decomposition      */
@@ -102,7 +103,7 @@
 #define LO         1       /* Index of low values                             */
 #define TRUE       (1==1)  /* Self explanatory                                */
 #define FALSE      (1==0)  /* Self explanatory                                */
-#define MSIZE      int     /* Integral type for allocating memory             */
+#define MSIZE      long    /* war int ; Integral type for allocating memory             */
 #define NMIN       2       /* Minimum number of subintervals                  */
 #define ANSWER     0.38629436111989061883446424291653136151000 /*  roughly!!! */
 #define MAXMESSAGE 512

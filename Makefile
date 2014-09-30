@@ -35,6 +35,8 @@
 #          KERN_CFLAGS and the DRIV_CFLAGS.
 #       5. Save the Makefile and type 'make' to create the executables.
 #          To run the benchmark type 'make run'.
+#
+# Modified 2003 by Moritz Franosch (mail@Franosch.org)
 
 
 ARCH       = unix
@@ -45,12 +47,12 @@ INCLUDES_PATH   = hint.h typedefs.h
 INCLUDES   = 
 TARGET     = DOUBLE INT FLOAT 
 
-CC         = egcs
+CC         = gcc
 KERN_CFLAGS= 
 DRIV_CFLAGS= 
-CFLAGS     = -O2 -fomit-frame-pointer -finline-functions -funroll-loops
-#
-#
+CFLAGS     = -O3
+# -O2 -fomit-frame-pointer -finline-functions -funroll-loops
+
 LFLAGS     = -lm 
 
 targets:    $(TARGET)
@@ -71,29 +73,41 @@ clobber:
 		/bin/rm -f  $(TARGET)
 
 
-#
+
 #
 # This section of the Makefile is for compiling the binaries
-
-
 #
+
+FLAGS = $(CFLAGS) $(DRIV_SRC) $(KERN_SRC) -D$(ARCH) $(LFLAGS) -DIINT
+# take -DILONG for accessing more than 2 GiB RAM, otherwise -DIINT
+
+
 DOUBLE: $(DRIV_SRC) $(INCLUDES_PATH) Makefile
-	$(CC) $(CFLAGS) $(DRIV_SRC) $(KERN_SRC) -D$(ARCH) -DDOUBLE -DIINT  -o DOUBLE $(LFLAGS)
+	$(CC) $(FLAGS) -DDOUBLE -o DOUBLE
 
 
 INT: $(DRIV_SRC) $(INCLUDES_PATH) Makefile
-	$(CC) $(CFLAGS) $(DRIV_SRC) $(KERN_SRC) -D$(ARCH) -DINT -DIINT  -o INT $(LFLAGS)
+	$(CC) $(FLAGS) -DINT -o INT
 
 
 FLOAT: $(DRIV_SRC) $(INCLUDES_PATH) Makefile
-	$(CC) $(CFLAGS) $(DRIV_SRC) $(KERN_SRC) -D$(ARCH) -DFLOAT -DIINT  -o FLOAT $(LFLAGS)
+	$(CC) $(FLAGS) -DFLOAT -o FLOAT
 
 
 SHORT: $(DRIV_SRC) $(INCLUDES_PATH) Makefile
-	$(CC) $(CFLAGS) $(DRIV_SRC) $(KERN_SRC) -D$(ARCH) -DSHORT -DIINT  -o SHORT $(LFLAGS)
+	$(CC) $(FLAGS) -DSHORT -o SHORT
 
 
 LONGLONG: $(DRIV_SRC) $(INCLUDES_PATH) Makefile
-	$(CC) $(CFLAGS) $(DRIV_SRC) $(KERN_SRC) -D$(ARCH) -DLONGLONG -DIINT  -o LONGLONG $(LFLAGS)
+	$(CC) $(FLAGS) -DLONGLONG -o LONGLONG
 
 
+#
+# This section of the Makefile is for displaying the data with xmgrace
+#
+
+display%: data%
+	xmgrace -block $</DOUBLE -bxy 5:2 -block $</FLOAT -bxy 5:2 -block $</INT -bxy 5:2 -par xmgrace.par -par $</description.par
+
+results/%.jpg: data.%
+	xmgrace -block $</DOUBLE -bxy 5:2 -block $</FLOAT -bxy 5:2 -block $</INT -bxy 5:2 -par xmgrace.par -par $</description.par -hdevice JPEG -hardcopy -printfile $@
