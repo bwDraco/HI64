@@ -2,6 +2,7 @@
 /* "HINT" -- Hierarchical INTegration.                                        */
 /* Copyright (C) 1994 by Iowa State University Research Foundation, Inc.      */
 /* Modified 2003 by Moritz Franosch (mail@Franosch.org)                       */
+/* Further modified 2014 by Brian "DragonLord" Wong                           */
 /*                                                                            */
 /* This program is free software; you can redistribute it and/or modify       */
 /* it under the terms of the GNU General Public License as published by       */
@@ -62,7 +63,7 @@ int main(int argc, char *argv[])
             /* tlast, */       /* Time of last recorded trial                      */
             tscout;       /* Time for initial survey                          */
 
-    long     dbits,        /* Number of bits of accuracy for dmax              */
+    __int64 dbits,        /* Number of bits of accuracy for dmax              */
             ibits,        /* Number of bits for imax                          */
             i, j, k,      /* Loop counters                                    */
             laps,         /* Approximate number of laps in a trial            */
@@ -87,6 +88,8 @@ int main(int argc, char *argv[])
     printf(" Iowa State University Research Foundation, Inc.\n");
     printf("Please send results and questions to:   hint@scl.ameslab.gov\n");
     printf("When sending results please follow the form in README\n");
+    printf("________________________________________________________\n");
+    printf("This version is updated for use with 64-bit systems\n");
     printf("________________________________________________________\n");
 	printf("RECT is %d bytes\n",sizeof(RECT));
 
@@ -203,7 +206,7 @@ int main(int argc, char *argv[])
  /* This loop is the main loop driver of the HINT kernel.                     */
     for (t = 0, i = 0, n = NMIN, qpeak = 0, qprat = 1; 
         ((i < NSAMP) && (t < STOPTM) && (n < scx) && (qprat > STOPRT));
-        i++, n = ((long)(n * ADVANCE) > n)? (n * ADVANCE) : n + 1)
+        i++, n = ((__int64)(n * ADVANCE) > n)? (n * ADVANCE) : n + 1)
     {     
         printf(".");
         fflush(stdout);
@@ -230,18 +233,18 @@ int main(int argc, char *argv[])
         qpeak = MAX(qpeak, quips);
         qprat = quips / qpeak;
     }
-    memuse = (long)(qdata[i-1].n * (sizeof(RECT)+sizeof(DSIZE)+sizeof(ISIZE)));
+    memuse = (__int64)(qdata[i-1].n * (sizeof(RECT)+sizeof(DSIZE)+sizeof(ISIZE)));
     if ((qprat > STOPRT) && (eflag == NOMEM))
-        printf("\nThis run was memory limited at %d subintervals -> %d bytes\n",
-                                                 n, memuse);
+        printf("\nThis run was memory limited at %I64d subintervals -> $I64d bytes\n",
+                                                 (__int64)n, (__int64)memuse);
     printf("\nDone with first pass. Now computing net QUIPS\n");
 
 	memref = (DSREFS * sizeof(DSIZE) + ISREFS * sizeof(ISIZE)) * qdata[i-1].n;
 	memref /= (1024 * 1024);
 	bandwt = memref / qdata[i-1].t;
-    fprintf(curv,"%12.10lf %lf %lf %lf %15ld %lf\n", 
+    fprintf(curv,"%12.10lf %lf %lf %I64d %20I64d %lf\n", 
             qdata[i-1].t, qdata[i-1].qp, qdata[i-1].delq,
-            (double)qdata[i-1].n, memuse, bandwt);
+            qdata[i-1].n, memuse, bandwt);
     
  /* Now go backwards through the data to calculate net QUIPS, and filter data.*/
     for (qpnet = qdata[i-1].qp, j = i - 2; j >= 0; j--)
@@ -267,13 +270,13 @@ int main(int argc, char *argv[])
 			delq = (double)dmax / gamut - 1;
             qdata[j].qp = delq / qdata[j].t + 1.0 / gamut / qdata[j].t;
         }
-        memuse = (long)(qdata[j].n * (sizeof(RECT)+sizeof(DSIZE)+sizeof(ISIZE)));
+        memuse = (__int64)(qdata[j].n * (sizeof(RECT)+sizeof(DSIZE)+sizeof(ISIZE)));
 		memref = (DSREFS * sizeof(DSIZE) + ISREFS * sizeof(ISIZE)) * qdata[j].n;
 		memref /= (1024 * 1024);
 		bandwt = memref / qdata[j].t;
-        fprintf(curv,"%12.10lf %lf %lf %lf %15ld %lf\n", 
+        fprintf(curv,"%12.10lf %lf %lf %I64d %20I64d %lf\n", 
                 qdata[j].t, qdata[j].qp, qdata[j].delq,
-                (double)qdata[j].n, memuse, bandwt);
+                qdata[j].n, memuse, bandwt);
 
      /* Now calculate the addition to the net QUIPS.                          */
      /* This is calculated as the sum of QUIPS(j) * (1 - time(j) / time(j+1)).*/
