@@ -75,7 +75,7 @@
 /*      Adjustable Defines                                                    */
 /*      These may be adjusted according to the HINT rules.                    */
 /******************************************************************************/
-#define ADVANCE    1.2589  /* 1.2589 */ /* Multiplier. We use roughly 1 decibel step size. */
+#define ADVANCE    1.2589  /* Multiplier. We use roughly 1 decibel step size. */
                            /* Closer to 1.0 takes longer to run, but might    */
                            /* produce slightly higher net QUIPS.              */
 #define NCHUNK     4       /* Number of chunks for scatter decomposition      */
@@ -85,8 +85,8 @@
                            /* Increase if needed, e.g. if ADVANCE is smaller  */
 #define NTRIAL     5       /* Normal number of times to run a trial           */
                            /* Increase if computer is prone to interruption   */
-#define PATIENCE   7      /* Number of times to rerun a bogus trial          */
-#define RUNTM      1.0    /* Target time, seconds. Reduce for high-res timer.*/
+#define PATIENCE   7       /* Number of times to rerun a bogus trial          */
+#define RUNTM      1.0     /* Target time, seconds. Reduce for high-res timer.*/
                            /* Should be much larger than timer resolution.    */
 #define STOPRT     0.1     /* Ratio of current to peak QUIPS to stop at       */
                            /* Smaller numbers will beat on virtual memory.    */
@@ -103,7 +103,7 @@
 #define LO         1       /* Index of low values                             */
 #define TRUE       (1==1)  /* Self explanatory                                */
 #define FALSE      (1==0)  /* Self explanatory                                */
-#define MSIZE      long    /* war int ; Integral type for allocating memory             */
+#define MSIZE      __int64 /* Integral type for allocating memory             */
 #define NMIN       2       /* Minimum number of subintervals                  */
 #define ANSWER     0.38629436111989061883446424291653136151000 /*  roughly!!! */
 #define MAXMESSAGE 512
