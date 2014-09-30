@@ -2,6 +2,8 @@
 /* "HINT" -- Hierarchical INTegration.                                        */
 /* Copyright (C) 1994 by Iowa State University Research Foundation, Inc.      */
 /* Modified 2003 by Moritz Franosch (mail@Franosch.org)                       */
+/* Further modified 2014 by Brian "DragonLord" Wong                           */
+/* Licensed under the GNU General Public License (any version)                */
 /*                                                                            */
 /* Files needed for use:                                                      */
 /*     * hint.c             ---- Driver source                                */
@@ -81,16 +83,16 @@
 #define NCHUNK     4       /* Number of chunks for scatter decomposition      */
                            /* Larger numbers increase time to first result    */
                            /* (latency) but sample domain more evenly.        */
-#define NSAMP      200     /* Maximum number of QUIPS measurements            */
+#define NSAMP      5000    /* Maximum number of QUIPS measurements            */
                            /* Increase if needed, e.g. if ADVANCE is smaller  */
 #define NTRIAL     5       /* Normal number of times to run a trial           */
                            /* Increase if computer is prone to interruption   */
 #define PATIENCE   7       /* Number of times to rerun a bogus trial          */
-#define RUNTM      1.0     /* Target time, seconds. Reduce for high-res timer.*/
+#define RUNTM      0.5     /* Target time, seconds. Reduce for high-res timer.*/
                            /* Should be much larger than timer resolution.    */
-#define STOPRT     0.1     /* Ratio of current to peak QUIPS to stop at       */
+#define STOPRT     0.15    /* Ratio of current to peak QUIPS to stop at       */
                            /* Smaller numbers will beat on virtual memory.    */
-#define STOPTM     100     /* Longest time acceptable, seconds.  Most systems */
+#define STOPTM     60      /* Longest time acceptable, seconds.  Most systems */
                            /* run out of decent-speed memory well before this */
 #define MXPROC     32      /* Maximum number of processors to use in shared   */                           /* memory configuration. Adjust as necessary.      */
 
