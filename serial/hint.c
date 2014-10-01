@@ -81,15 +81,13 @@ int main(int argc, char *argv[])
     printf("        Version 1.0  June 1994\n");
     printf("   John L. Gustafson & Quinn O. Snell\n");
     printf("     Scalable Computing Laboratory\n");
-    printf("   236 Wilhelm, Iowa State University\n");
-    printf("        Ames, Iowa    50011-3020\n");
-    printf("            (515) 294 - 9294\n\n");
+    printf("         Iowa State University\n\n");
     printf("Copyright (C) 1994");
     printf(" Iowa State University Research Foundation, Inc.\n");
-    printf("Please send results and questions to:   hint@scl.ameslab.gov\n");
-    printf("When sending results please follow the form in README\n");
-    printf("________________________________________________________\n");
-    printf("This version is updated for use with 64-bit systems\n");
+    printf("Portions Copyright (C) 2003 Moritz Franosch\n");
+    printf("Portions Copyright (C) 2014 Brian \"DragonLord\" Wong\n");
+    printf("Updated for use with 64-bit systems - ");
+    printf("see README.txt for usage information\n");
     printf("________________________________________________________\n");
 	printf("RECT is %d bytes\n",sizeof(RECT));
 
@@ -332,7 +330,7 @@ Run(int laps,
 
         t1 = When();
 
-     /* Track the minimun time thus far for this trial.                       */
+     /* Track the minimum time thus far for this trial.                       */
         tm = (t1 - t0) / laps;
         mint = MIN(mint, tm);
     }
