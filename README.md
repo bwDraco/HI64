@@ -12,7 +12,7 @@ The benchmark runs continuously until a substantial drop in performance occurs. 
 
 ## Configuration
 
-Settings for HINT are defined at build time, through a combination of compiler options and macros defined in `hint.h`. The following macros are set through the compiler command line:
+Settings for HI64 are defined at build time, through a combination of compiler options and macros defined in `hint.h`. The following macros are set through the compiler command line:
 
  - `DSIZE`: The data type to use for the underlying computations. Both floating-point and integral types may be used, as long as they are signed. Larger types such as `double` and `__int64` permit higher-quality results allowing for longer computation but may lower maximum QUIPS. Smaller data types such as `float` and `__int32` tend to be faster but their lower precision limits the maximum quality of the result, resulting in a sharp drop in QUIPS as the precision of the variables is exhausted. (Due to a limitation in the timing code, 32-bit and smaller data types may not work.)
  - `ISIZE`: The data type to use for the index of the `rect` array. An integral data type with at least one half the bits of effective precision of `DSIZE` is needed to attain the full precision available from `DSIZE`. For example, a `DSIZE` of `double` has 53 bits of effective precision (the length of the mantissa), so `__int32` is sufficiently long to fully utilize this precision.
