@@ -12,9 +12,12 @@ The benchmark runs continuously until a substantial drop in performance occurs. 
 
 ## Configuration
 
-Settings for HINT are defined at build time, through a combination of compiler options and macros defined in `hint.h`.
+Settings for HINT are defined at build time, through a combination of compiler options and macros defined in `hint.h`. The following macros are set through the compiler command line:
 
-*TODO*: Add configuration information for each item 
+ - `DSIZE`: The data type to use for the underlying computations. Both floating-point and integral types may be used, as long as they are signed. Larger types such as `double` and `__int64` permit higher-quality results allowing for longer computation but may lower maximum QUIPS. Smaller data types such as `float` and `__int32` tend to be faster but their lower precision limits the maximum quality of the result, resulting in a sharp drop in QUIPS as the precision of the variables is exhausted. (Due to a limitation in the timing code, 32-bit and smaller data types may not work.)
+ - `ISIZE`: The data type to use for the index of the `rect` array. An integral data type with at least one half the bits of effective precision of `DSIZE` is needed to attain the full precision available from `DSIZE`. For example, a `DSIZE` of `double` has 53 bits of effective precision (the length of the mantissa), so `__int32` is sufficiently long to fully utilize this precision.
+
+*TODO*: Add hi64.h options
 
 ## Interpreting output
 
@@ -22,7 +25,7 @@ Settings for HINT are defined at build time, through a combination of compiler o
 
 ## More information
 
-More details can be found in the original README.txt file inside the "serial" directory. This file will be updated with more technical information as the project progresses.
+More information about the benchmark can be obtained in the README file located in the "old-files" directory. This file was supplied with the original HINT distribution, so some parts may be out of date, but it still contains useful information.
 
 
   [1]: http://hint.byu.edu/ 
