@@ -71,13 +71,7 @@ int main(int argc, char *argv[])
 
     char*   suffix;       /* Suffix for data.suffix directory                 */
 
-    printf("         _    _\n");
-    printf("         |    |  _ _   _ _____ TM\n");
-    printf("         |--  |  | |\\  | | | |\n");
-    printf("         |  --|  | | \\ |   |\n");
-    printf("         |    |  | |  \\|   |\n");
-    printf("         ^    ^  ^ ^   ^   ^\n\n");
-    printf("*** The  HINT  PERFORMANCE ANALYZER ***\n");
+    printf("\n*** The  HINT  PERFORMANCE ANALYZER ***\n");
     printf("        Version 1.0  June 1994\n");
     printf("   John L. Gustafson & Quinn O. Snell\n");
     printf("     Scalable Computing Laboratory\n");
