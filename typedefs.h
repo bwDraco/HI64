@@ -1,10 +1,11 @@
 /******************************************************************************/
 /* HI64 System Benchmark                                                      */
-/* 64-bit benchmark derived from Hierarchical INTegration (HINT)              */
-/* Originally developed at Ames Laboratory, U.S. Department of Energy         */
+/* 64-bit benchmark derived from Hierarchical INTegration (HINT) originally   */
+/* developed at Ames Laboratory, U.S. Department of Energy                    */
+/*                                                                            */
 /* Portions Copyright (C) 1994 Iowa State University Research Foundation, Inc.*/
-/* Portions Copyright (C) 2003 by Moritz Franosch                             */
-/* Portions Copyright (C) 2014 by Brian "DragonLord" Wong                     */
+/* Portions Copyright (C) 2003 Moritz Franosch                                */
+/* Portions Copyright (C) 2014 Brian "DragonLord" Wong                        */
 /*                                                                            */
 /* This program is free software; you can redistribute it and/or modify       */
 /* it under the terms of the GNU General Public License as published by       */
