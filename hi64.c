@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
 
     char*   suffix;       /* Suffix for data.suffix directory                 */
 
-    printf("\nHI64 System Benchmark, Version 0.1.0 (October 1, 2014)\n");
+    printf("\nHI64 System Benchmark, Version 0.1.0-pre1 (October 1, 2014)\n");
     printf("Derived from HINT originally developed by");
     printf(" John L. Gustafson & Quinn O. Snell,\n");
     printf("Scalable Computing Laboratory, Iowa State University\n\n");
