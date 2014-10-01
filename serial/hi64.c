@@ -1,8 +1,10 @@
 /******************************************************************************/
-/* "HINT" -- Hierarchical INTegration.                                        */
-/* Copyright (C) 1994 by Iowa State University Research Foundation, Inc.      */
-/* Modified 2003 by Moritz Franosch (mail@Franosch.org)                       */
-/* Further modified 2014 by Brian "DragonLord" Wong                           */
+/* HI64 System Benchmark                                                      */
+/* 64-bit benchmark derived from Hierarchical INTegration (HINT)              */
+/* Originally developed at Ames Laboratory, U.S. Department of Energy         */
+/* Portions Copyright (C) 1994 Iowa State University Research Foundation, Inc.*/
+/* Portions Copyright (C) 2003 by Moritz Franosch                             */
+/* Portions Copyright (C) 2014 by Brian "DragonLord" Wong                     */
 /*                                                                            */
 /* This program is free software; you can redistribute it and/or modify       */
 /* it under the terms of the GNU General Public License as published by       */
@@ -11,15 +13,15 @@
 /* Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.    */
 /*                                                                            */
 /* Files needed for use:                                                      */
-/*     * hint.c             ---- Driver source                                */
-/*     * hkernel.c          ---- Kernel source                                */
-/*     * hint.h             ---- General include file                         */
-/*     * typedefs.h         ---- Include file for DSIZE and ISIZE             */
-/*     * README             ---- These are the rules. Follow them!!!          */
+/*     * hi64.c            ---- Driver source                                 */
+/*     * hkernel.c         ---- Kernel source                                 */
+/*     * hi64.h            ---- General include file                          */
+/*     * typedefs.h        ---- Include file for DSIZE and ISIZE              */
+/*     * README.md         ---- Benchmark documentation and usage information */
 /******************************************************************************/
 
-/* Refer to hint.h and typedefs.h for all-capitalized definitions.            */
-#include       "hint.h"    
+/* Refer to hi64.h and typedefs.h for all-capitalized definitions.            */
+#include       "hi64.h"    
 
 int main(int argc, char *argv[])
 {
@@ -71,18 +73,20 @@ int main(int argc, char *argv[])
 
     char*   suffix;       /* Suffix for data.suffix directory                 */
 
-    printf("\n*** The  HINT  PERFORMANCE ANALYZER ***\n");
-    printf("        Version 1.0  June 1994\n");
-    printf("   John L. Gustafson & Quinn O. Snell\n");
-    printf("     Scalable Computing Laboratory\n");
-    printf("         Iowa State University\n\n");
-    printf("Copyright (C) 1994");
+    printf("\nHI64 System Benchmark, Version 0.1.0 (October 1, 2014)\n");
+    printf("Derived from HINT originally developed by");
+    printf(" John L. Gustafson & Quinn O. Snell,\n");
+    printf("Scalable Computing Laboratory, Iowa State University\n\n");
+    printf("Portions Copyright (C) 1994");
     printf(" Iowa State University Research Foundation, Inc.\n");
     printf("Portions Copyright (C) 2003 Moritz Franosch\n");
-    printf("Portions Copyright (C) 2014 Brian \"DragonLord\" Wong\n");
-    printf("Updated for use with 64-bit systems - ");
-    printf("see README.txt for usage information\n");
-    printf("________________________________________________________\n");
+    printf("Portions Copyright (C) 2014 Brian \"DragonLord\" Wong\n\n");
+    printf("This program is licensed under the GNU GPL; see COPYING.txt.\n");
+    printf("NO WARRANTY OF ANY KIND IS PROVIDED, including any implied");
+    printf(" warranty of\nmerchantability or fitness for a particular");
+    printf(" purpose.\n\n");
+    printf("See README.md for usage and technical information.\n");
+    printf("---------------------------------------------------------\n");
 	printf("RECT is %d bytes\n",sizeof(RECT));
 
 #ifdef DEBUG

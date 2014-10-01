@@ -1,13 +1,23 @@
 /******************************************************************************/
-/* "HINT" -- Hierarchical INTegration.                                        */
-/* Copyright (C) 1994 by Iowa State University Research Foundation, Inc.      */
+/* HI64 System Benchmark                                                      */
+/* 64-bit benchmark derived from Hierarchical INTegration (HINT)              */
+/* Originally developed at Ames Laboratory, U.S. Department of Energy         */
+/* Portions Copyright (C) 1994 Iowa State University Research Foundation, Inc.*/
+/* Portions Copyright (C) 2003 by Moritz Franosch                             */
+/* Portions Copyright (C) 2014 by Brian "DragonLord" Wong                     */
+/*                                                                            */
+/* This program is free software; you can redistribute it and/or modify       */
+/* it under the terms of the GNU General Public License as published by       */
+/* the Free Software Foundation.  You should have received a copy of the      */
+/* GNU General Public License along with this program; if not, write to the   */
+/* Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.    */
 /*                                                                            */
 /* Files needed for use:                                                      */
-/*     * hint.c             ---- Driver source                                */
-/*     * hkernel.c          ---- Kernel source                                */
-/*     * hint.h             ---- General include file                         */
-/*     * typedefs.h         ---- Include file for DSIZE and ISIZE             */
-/*     * README             ---- These are the rules. Follow them!!!          */
+/*     * hi64.c            ---- Driver source                                 */
+/*     * hkernel.c         ---- Kernel source                                 */
+/*     * hi64.h            ---- General include file                          */
+/*     * typedefs.h        ---- Include file for DSIZE and ISIZE              */
+/*     * README.md         ---- Benchmark documentation and usage information */
 /******************************************************************************/
 /******************************************************************************/
 /*      Defines                                                               */
