@@ -27,15 +27,15 @@ Based on this information, a value called **quality improvements per second**
 (**QUIPS**) is computed, representing the computer's performance for that trial.
 Data collected on the QUIPS attained by a computer over time as the benchmark
 progresses can be used for in-depth analysis of the performance characteristics
-of the system.
+of the system (see **Interpreting output** below).
 
 The benchmark runs continuously until a substantial drop in performance occurs.
 This typically occurs when the computer runs out of main memory and resorts to
 disk paging to complete the computation, resulting in a dramatic slowdown and an
-attendant drop in QUIPS. Specifically, the benchmark stops when the QUIPS for the
-previous trial drops belows a predefined ratio of the peak QUIPS attained during
-the benchmark or when the shortest lap in a trial takes longer than a predefined
-amount of time. (More details on how to set these limits follow.)
+attendant drop in QUIPS. Specifically, the benchmark stops when the QUIPS for
+the previous trial drops belows a predefined ratio of the peak QUIPS attained
+during the benchmark or when the shortest lap in a trial takes longer than a
+predefined amount of time. (More details on how to set these limits follow.)
 
 ## Building and configuration
 
@@ -83,7 +83,7 @@ per trial. Notable options include:
    HI64 stores performance data for each trial in a fixed-size array, and lower
    values of `ADVANCE` result in more samples taken. Because memory is generally
    not an issue on modern systems, this value has been significantly increased
-   from the value set in original code. A value that is too low, such as 50,
+   from the value set in the original code. A value that is too low, such as 50,
    could cause HI64 to crash due to a buffer overflow as there may not be enough
    space to store all performance data. The default is `5000`.
  - `NTRIAL`: The minimum number of laps per trial. Higher numbers reduce
@@ -109,15 +109,16 @@ per trial. Notable options include:
  - `STOPRT`: The ratio of current QUIPS to the peak QUIPS below which the
    benchmark will be stopped. Lowering this value will cause the benchmark to
    take much longer to complete as it will be less likely to detect that the
-   system has run out of memory. The default is `0.15`.
- - `STOPTM`: The maximum permitted time for all runs of a particular trial above
-   the benchmark will be stopped. This value should be set high enough to
-   provide for the increasing amount of time needed as main memory fills up, but
-   not so high that it exceeds the amount of time spent per lap when paging to
-   disk. The default is `60`.
+   system has run out of memory. The default is `0.15`, or 15% of the maximum
+   QUIPS attained during the benchmark.
+ - `STOPTM`: The maximum permitted time, in seconds, for a trial. The benchmark
+   is stopped when a trial exceeds this time. This value should be set high
+   enough to provide for the increasing amount of time needed to complete each
+   trial as main memory fills up, but not so high that it exceeds the amount of
+   time spent per lap when paging to disk. The default is `60`.
 
 The remaining options may be ignored. The non-adjustable defines should not be
-changed as this may break the benchmark.
+changed as doing so may break the benchmark.
 
 ## Usage
 
@@ -125,8 +126,9 @@ HI64 saves its output to a directory whose name is determined by the first
 parameter passed to it, prefixed by `data`. For example, if the parameter is
 `foo`, it will attempt to write output to the directory called `datafoo`. The
 name of the output file used is the same as the name by which the executable
-was invoked. (This unusual output behavior was inherited from the original HINT
-code and will be changed in a future release to make the program easier to use.)
+was invoked. If the target directory does not exist, the benchmark will not run.
+(This unusual output behavior was inherited from the original HINT code and will
+be changed in a future release to make the program easier to use.)
 
 The program runs until the `STOPRT` or `STOPTM` thresholds are reached. This
 generally means that the system will run out of memory and start swapping to
