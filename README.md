@@ -45,11 +45,14 @@ GCC) to generate non-working code, so they should not be used. In this document,
 we will assume a recent version of GCC.
 
 Settings for HI64 are defined at build time, through a combination of compiler
-options and macros defined in `hint.h`. The following macros are set through the
-compiler command line:
+options and macros defined in `hint.h`. The following macros specify data types
+to be used internally and are set through the compiler command line. Primitive
+data types, as well as types provided by the C header file <stdint.h> (such as
+`uint32_t` and `int64t`), can be used. These macros include:
 
  - `DSIZE`: The data type to use for the underlying computations. Both
-   floating-point and integral types may be used, as long as they are signed.
+   floating-point and integral types may be used, as long as they are signed
+   (e.g `long` is a valid data type for DSIZE, while `unsigned long` is not).
    Larger types such as `double` and `int64_t` permit higher-quality results
    allowing for longer computation but may lower maximum QUIPS. Smaller data
    types such as `float` and `int32_t` tend to be faster but their lower
@@ -57,10 +60,12 @@ compiler command line:
    in QUIPS as the precision of the variables is exhausted. (Due to a limitation
    in the timing code, 32-bit and smaller data types may not work.)
  - `ISIZE`: The data type to use for the index of the `rect` array. An integral
-   data type is required. At least one half the bits of effective precision of
-   `DSIZE` is needed to attain the full precision available from `DSIZE`. For
-   example, a `DSIZE` of `double` has 53 bits of effective precision (the length
-   of the mantissa), so `int32_t` is sufficiently long to fully utilize this
+   data type is required. On most systems, `ISIZE` may be signed or unsigned;
+   an unsigned type is preferred where possible as array indexes are always
+   positive. At least one half the bits of effective precision of `DSIZE` is
+   needed to attain the full precision available from `DSIZE`. For example, a
+   `DSIZE` of `double` has 53 bits of effective precision (the length of the
+   mantissa), so an `ISIZE` of `uint32_t` is sufficiently long to utilize this
    precision.
 
 An example build command would look like this:
