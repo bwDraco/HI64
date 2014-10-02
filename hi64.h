@@ -23,6 +23,7 @@
 
 #include       <stdio.h>
 #include       <stdlib.h>
+#include       <stdint.h>
 #include       <math.h>
 #include       <time.h>
 
@@ -112,7 +113,7 @@
 #define LO         1       /* Index of low values                             */
 #define TRUE       (1==1)  /* Self explanatory                                */
 #define FALSE      (1==0)  /* Self explanatory                                */
-#define MSIZE      __int64 /* Integral type for allocating memory             */
+#define MSIZE      int64_t /* Integral type for allocating memory             */
 #define NMIN       2       /* Minimum number of subintervals                  */
 #define ANSWER     0.38629436111989061883446424291653136151000 /*  roughly!!! */
 #define MAXMESSAGE 512

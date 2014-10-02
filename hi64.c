@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
             /* tlast, */       /* Time of last recorded trial                      */
             tscout;       /* Time for initial survey                          */
 
-    __int64 dbits,        /* Number of bits of accuracy for dmax              */
+    int64_t dbits,        /* Number of bits of accuracy for dmax              */
             ibits,        /* Number of bits for imax                          */
             i, j, k,      /* Loop counters                                    */
             laps,         /* Approximate number of laps in a trial            */
@@ -203,7 +203,7 @@ int main(int argc, char *argv[])
  /* This loop is the main loop driver of the HINT kernel.                     */
     for (t = 0, i = 0, n = NMIN, qpeak = 0, qprat = 1; 
         ((i < NSAMP) && (t < STOPTM) && (n < scx) && (qprat > STOPRT));
-        i++, n = ((__int64)(n * ADVANCE) > n)? (n * ADVANCE) : n + 1)
+        i++, n = ((int64_t)(n * ADVANCE) > n)? (n * ADVANCE) : n + 1)
     {     
         printf(".");
         fflush(stdout);
@@ -230,10 +230,10 @@ int main(int argc, char *argv[])
         qpeak = MAX(qpeak, quips);
         qprat = quips / qpeak;
     }
-    memuse = (__int64)(qdata[i-1].n * (sizeof(RECT)+sizeof(DSIZE)+sizeof(ISIZE)));
+    memuse = (int64_t)(qdata[i-1].n * (sizeof(RECT)+sizeof(DSIZE)+sizeof(ISIZE)));
     if ((qprat > STOPRT) && (eflag == NOMEM))
         printf("\nThis run was memory limited at %I64d subintervals -> $I64d bytes\n",
-                                                 (__int64)n, (__int64)memuse);
+                                                 (int64_t)n, (int64_t)memuse);
     printf("\nDone with first pass. Now computing net QUIPS\n");
 
 	memref = (DSREFS * sizeof(DSIZE) + ISREFS * sizeof(ISIZE)) * qdata[i-1].n;
@@ -267,7 +267,7 @@ int main(int argc, char *argv[])
 			delq = (double)dmax / gamut - 1;
             qdata[j].qp = delq / qdata[j].t + 1.0 / gamut / qdata[j].t;
         }
-        memuse = (__int64)(qdata[j].n * (sizeof(RECT)+sizeof(DSIZE)+sizeof(ISIZE)));
+        memuse = (int64_t)(qdata[j].n * (sizeof(RECT)+sizeof(DSIZE)+sizeof(ISIZE)));
 		memref = (DSREFS * sizeof(DSIZE) + ISREFS * sizeof(ISIZE)) * qdata[j].n;
 		memref /= (1024 * 1024);
 		bandwt = memref / qdata[j].t;
