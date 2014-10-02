@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
             t0,           /* Starting time                                    */
             t1,           /* Ending time                                      */
             tdelta,       /* Timer resolution                                 */
-            /* tlast, */       /* Time of last recorded trial                      */
+            /* tlast, */  /* Time of last recorded trial                      */
             tscout;       /* Time for initial survey                          */
 
     int64_t dbits,        /* Number of bits of accuracy for dmax              */
@@ -193,11 +193,9 @@ int main(int argc, char *argv[])
         exit(0);
     }
     if ((tscout < RUNTM) && (eflag == NOMEM))
-       printf("Memory is not sufficient for > %3.1lf second runs.\n",
-                                                                         RUNTM);
+       printf("Memory is not sufficient for > %3.1lf second runs.\n", RUNTM);
     else if (tscout < RUNTM)
-       printf("Precision is not sufficient for > %3.1lf second runs.\n",
-                                                                         RUNTM);
+       printf("Precision is not sufficient for > %3.1lf second runs.\n", RUNTM);
 
 
  /* This loop is the main loop driver of the HINT kernel.                     */

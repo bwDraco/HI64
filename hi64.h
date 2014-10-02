@@ -105,7 +105,7 @@
 #define MXPROC     32      /* Maximum number of processors to use in shared   */                           /* memory configuration. Adjust as necessary.      */
 
 /******************************************************************************/
-/*      Non-Adjustable Defines                                              */
+/*      Non-Adjustable Defines                                                */
 /******************************************************************************/
 #define DSREFS     90
 #define ISREFS     10
