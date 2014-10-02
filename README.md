@@ -41,8 +41,8 @@ amount of time. (More details on how to set these limits follow.)
 
 HI64 can be built with most C compilers as long as 64-bit integers are
 supported. Optimization levels higher than `-O1` have been found (at least on
-GCC) to generate non-working code, so they should not be used. The examples in
-this section will assume GCC 4.9.
+GCC) to generate non-working code, so they should not be used. In this document,
+we will assume a recent version of GCC.
 
 Settings for HI64 are defined at build time, through a combination of compiler
 options and macros defined in `hint.h`. The following macros are set through the
@@ -93,16 +93,14 @@ per trial. Notable options include:
    systems which receive little user input and have few background tasks are
    less subject to frequent interrupts. The default is `5`.
  - `PATIENCE`: The number of times to rerun a particular trial if that trial
-   took longer than the next trial.
-   <br><br>
-   At the end of the main benchmark, HI64 checks the performance data and reruns
-   any trials where the following trial took less time to complete, starting
-   from the last trial and working backwards. If, after `PATIENCE` runs of a
-   particular trial, it still takes longer than the following trial, it is
-   treated as having taken as long as the following trial. Increasing the
-   `PATIENCE` value may increase net QUIPS especially on systems with frequent
-   interrupts but may also cause the benchmark to take longer to finish. The
-   default is `7`.
+   took longer than the next trial. At the end of the main benchmark, HI64
+   checks the performance data and reruns any trials where the following trial
+   took less time to complete, starting from the last trial and working
+   backwards. If, after `PATIENCE` runs of a particular trial, it still takes
+   longer than the following trial, it is treated as having taken as long as the
+   following trial. Increasing the `PATIENCE` value may increase net QUIPS
+   especially on systems with frequent interrupts but may also cause the
+   benchmark to take longer to finish. The default is `7`.
  - `RUNTM`: The minimum time to run each trial, in seconds. HI64 will use this
    value to determine how many laps to run in earlier trials so that there are
    enough laps to fill `RUNTM` seconds, but in any case no less than `NTRIAL`
@@ -150,7 +148,7 @@ output are generated, as follows:
  6. The measured memory bandwidth, in MB/s.
 
 These data may be used with applications such as Microsoft Excel,
-OpenOffice/LibreOffice Calc, or gnuplot to generate charts which provide a
+OpenOffice/LibreOffice Calc, or gnuplot to generate graphs which provide a
 visualization of the performance characteristics of a computer. Information
 about a computer's caches and memory size can be obtained through interpretation
 of these graphs. For more information about how to read these graphs, see the
@@ -159,7 +157,8 @@ HINT and produces functionally equivalent output.)
 
 HI64 also generates a value called **net QUIPS**, a representation of the
 overall performance of the system. This value is calculated based on the total
-times for the shortest lap in each trials and the total QUIPS.
+times for the shortest lap in each trials and the total QUIPS and is printed to
+standard output at the end of the benchmark.
 
 ## More information
 
