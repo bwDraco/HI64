@@ -126,9 +126,10 @@ HI64 saves its output to a directory whose name is determined by the first
 parameter passed to it, prefixed by `data`. For example, if the parameter is
 `foo`, it will attempt to write output to the directory called `datafoo`. The
 name of the output file used is the same as the name by which the executable
-was invoked. If the target directory does not exist, the benchmark will not run.
-(This unusual output behavior was inherited from the original HINT code and will
-be changed in a future release to make the program easier to use.)
+was invoked. If no parameter is given, it will attempt to write to the directory
+named `data`. If the directory does not exist, the benchmark will not run. (This
+unusual output behavior was inherited from the original HINT code and will be
+changed in a future release to make the program easier to use.)
 
 The program runs until the `STOPRT` or `STOPTM` thresholds are reached. This
 generally means that the system will run out of memory and start swapping to

@@ -84,6 +84,7 @@
 
 /******************************************************************************/
 /*      Adjustable Defines                                                    */
+/*      See README.md for more detailed information.                          */
 /******************************************************************************/
 #define ADVANCE    1.2589  /* Multiplier. We use roughly 1 decibel step size. */
                            /* Closer to 1.0 takes longer to run, but might    */

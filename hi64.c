@@ -74,7 +74,8 @@ int main(int argc, char *argv[])
 
     char*   suffix;       /* Suffix for data.suffix directory                 */
 
-    printf("\nHI64 System Benchmark, Version 0.1.0-pre1 (October 1, 2014)\n");
+    printf("\nHI64 System Benchmark, Version 0.1.0-pre1");
+    printf(" (October 1, 2014)\n");
     printf("Derived from HINT originally developed by");
     printf(" John L. Gustafson & Quinn O. Snell,\n");
     printf("Scalable Computing Laboratory, Iowa State University\n\n");
@@ -97,7 +98,7 @@ int main(int argc, char *argv[])
     if (argc>=2) {
       suffix=argv[1];
     }
-    sprintf(filnm,"data%s/%s",argv[1],argv[0]);
+    snprintf(filnm, 80, "data%s/%s", suffix, argv[0]);
     if ((curv = fopen(filnm, "w")) == NULL)
     {
         printf("Could not open data file\n");
