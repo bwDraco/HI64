@@ -115,7 +115,7 @@
 #define FALSE      (1==0)  /* Self explanatory                                */
 #define MSIZE      int64_t /* Integral type for allocating memory             */
 #define NMIN       2       /* Minimum number of subintervals                  */
-#define ANSWER     0.38629436111989061883446424291653136151000 /*  roughly!!! */
+#define ANSWER     0.38629436111989061883446424291635136151000268720510508241360
 #define MAXMESSAGE 512
 
 /******************************************************************************/
