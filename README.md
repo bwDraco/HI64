@@ -159,9 +159,12 @@ These data may be used with applications such as Microsoft Excel,
 OpenOffice/LibreOffice Calc, or gnuplot to generate graphs which provide a
 visualization of the performance characteristics of a computer. Information
 about a computer's caches and memory size can be obtained through interpretation
-of these graphs. For more information about how to read these graphs, see the
-article ["Understanding HINT Graphs"][2] at the HINT website. (HI64 is based on
-HINT and produces functionally equivalent output.)
+of these graphs. In addition, comparing output for runs involving different data
+types, such as `double` and `int64_t`, can provide insight about the system's
+integer and floating-point compute performance. For more information about how
+to read these graphs, see the article ["Understanding HINT Graphs"][2] at the
+HINT website. (HI64 is based on HINT and produces functionally equivalent
+output.)
 
 HI64 also generates a value called **net QUIPS**, a representation of the
 overall performance of the system. This value is calculated based on the total
