@@ -48,7 +48,7 @@ Settings for HI64 are defined at build time, through a combination of compiler
 options and macros defined in `hint.h`. The following macros specify data types
 to be used internally and are set through the compiler command line. Primitive
 data types, as well as types provided by the C header file <stdint.h> (such as
-`uint32_t` and `int64t`), can be used. These macros include:
+`uint32_t` and `int64_t`), can be used. These macros include:
 
  - `DSIZE`: The data type to use for the underlying computations. Both
    floating-point and integral types may be used, as long as they are signed
@@ -173,7 +173,10 @@ standard output at the end of the benchmark.
 
 ## More information
 
-More information about the benchmark can be obtained in the README file located in the "old-files" directory. This file was supplied with the original HINT distribution, so some parts may be out of date, but it still contains useful information.
+More information about the benchmark can be obtained in the README file located
+in the "old-files" directory. This file was supplied with the original HINT
+distribution, so some parts may be out of date, but it still contains useful
+information.
 
 
   [1]: http://hint.byu.edu/
