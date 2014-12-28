@@ -21,3 +21,9 @@
    runtime in megabytes as the first parameter to the benchmark executable. The
    output directory name is now specified by the second parameter.
  - Fixed a typo in the out-of-memory error message.
+ 
+## 0.3.1 (December 28, 2014)
+
+ - Updated documentation to reflect the memory limiting feature.
+ - Increased the maximum file name length to 200 characters.
+ - Minor stylistic changes in code.

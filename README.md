@@ -35,7 +35,9 @@ disk paging to complete the computation, resulting in a dramatic slowdown and an
 attendant drop in QUIPS. Specifically, the benchmark stops when the QUIPS for
 the previous trial drops belows a predefined ratio of the peak QUIPS attained
 during the benchmark or when the shortest lap in a trial takes longer than a
-predefined amount of time. (More details on how to set these limits follow.)
+predefined amount of time. Alternatively, the maximum amount of memory to use
+can be set and the benchmark will stop when this limit is reached. (More details
+on how to set these limits follow.)
 
 ## Building and configuration
 
@@ -75,7 +77,8 @@ An example build command would look like this:
 A Makefile is included to simplify compilation of the benchmark. Running `make`
 or `mingw32-make` will generate binaries which use `DSIZE` of 16-, 32-, and
 64-bit integers as well as single-, double-, and extended-precision
-floating-point numbers.
+floating-point numbers. The Makefile currently assumes GCC; modify it as needed
+if you are using a different compiler.
 
 The macros in the "Adjustable Defines" section of `hi64.h` determine the
 behavior of the benchmark, such as when to stop the benchmark and how many laps
@@ -150,7 +153,8 @@ directory does not exist, the benchmark will not run. (This unusual output
 behavior was inherited from the original HINT code and will be changed in a
 future release to make the program easier to use.)
 
-The program runs until the `STOPRT` or `STOPTM` thresholds are reached. This
+The program runs until the `STOPRT` or `STOPTM` thresholds are reached, or until
+the specified memory limit is reached. If no memory limit is specified, this
 generally means that the system will run out of memory and start swapping to
 disk heavily before the benchmark is finished.
 

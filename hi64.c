@@ -27,7 +27,7 @@
 int main(int argc, char *argv[])
 {
     FILE    *curv;        /* Output file for QUIPS curve                      */
-    char    filnm[80];    /* Output file name                                 */
+    char    filnm[200];   /* Output file name                                 */
 
     Speed   qdata[NSAMP]; /* Array to keep track of QUIPs and time            */
 
@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
             t0,           /* Starting time                                    */
             t1,           /* Ending time                                      */
             tdelta,       /* Timer resolution                                 */
-            /* tlast, */  /* Time of last recorded trial                      */
+         /* tlast, */     /* Time of last recorded trial                      */
             tscout;       /* Time for initial survey                          */
 
     int64_t dbits,        /* Number of bits of accuracy for dmax              */
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 
     char*   suffix;       /* Suffix for data.suffix directory                 */
 
-    printf("\nHI64 System Benchmark, Version 0.3.0");
+    printf("\nHI64 System Benchmark, Version 0.3.1");
     printf(" (December 28, 2014)\n");
     printf("Derived from HINT originally developed by");
     printf(" John L. Gustafson & Quinn O. Snell,\n");

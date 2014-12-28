@@ -125,7 +125,8 @@
                            /* run out of decent-speed memory well before this */
 #endif
 
-#define MXPROC     32      /* Maximum number of processors to use in shared   */                           /* memory configuration. Adjust as necessary.      */
+#define MXPROC     32      /* Maximum number of processors to use in shared   */
+                           /* memory configuration. Adjust as necessary.      */
 
 /******************************************************************************/
 /*      Non-Adjustable Defines                                                */
