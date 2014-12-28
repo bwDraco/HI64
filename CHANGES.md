@@ -14,3 +14,10 @@
    arguments to the compiler or Make. Parameters which may be set this way
    include `ADVANCE`, `NCHUNK`, `NTRIAL`, `PATIENCE`, `RUNTM`, `STOPRT`, and
    `STOPTM`.
+
+## 0.3.0 (December 28, 2014)
+
+ - Added the ability to limit memory use. The memory limit is specified at
+   runtime in megabytes as the first parameter to the benchmark executable. The
+   output directory name is now specified by the second parameter.
+ - Fixed a typo in the out-of-memory error message.
