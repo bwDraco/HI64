@@ -72,9 +72,14 @@ An example build command would look like this:
 
     gcc -O1 -funroll-loops -DDSIZE=double -DISIZE=int32_t -o hi64-double hi64.c hkernel.c
 
-The macros in the "Adjustable Defines" section of hi64.h determine the behavior
-of the benchmark, such as when to stop the benchmark and how many laps to run
-per trial. Notable options include:
+A Makefile is included to simplify compilation of the benchmark. Running `make`
+or `mingw32-make` will generate binaries which use `DSIZE` of 16-, 32-, and
+64-bit integers as well as single-, double-, and extended-precision
+floating-point numbers.
+
+The macros in the "Adjustable Defines" section of `hi64.h` determine the
+behavior of the benchmark, such as when to stop the benchmark and how many laps
+to run per trial. Notable options include:
 
  - `ADVANCE`: The amount by which to multiply the number of subintervals for
    successive trial. This value must be greater than 1. Smaller values increase
@@ -124,6 +129,11 @@ per trial. Notable options include:
 
 The remaining options may be ignored. The non-adjustable defines should not be
 changed as doing so may break the benchmark.
+
+These options may be set at the compiler command line by adding a parameter such
+as `-DNTRIAL=3`, or as parameters to `make`, as in `NTRIAL=3`. Parameters which
+may be set this way include `ADVANCE`, `NCHUNK`, `NTRIAL`, `PATIENCE`, `RUNTM`,
+`STOPRT`, and `STOPTM`.
 
 ## Usage
 
