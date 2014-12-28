@@ -86,23 +86,45 @@
 /*      Adjustable Defines                                                    */
 /*      See README.md for more detailed information.                          */
 /******************************************************************************/
+
+#ifndef ADVANCE
 #define ADVANCE    1.2589  /* Multiplier. We use roughly 1 decibel step size. */
                            /* Closer to 1.0 takes longer to run, but might    */
                            /* produce slightly higher net QUIPS.              */
+#endif
+
 #define NCHUNK     4       /* Number of chunks for scatter decomposition      */
                            /* Larger numbers increase time to first result    */
                            /* (latency) but sample domain more evenly.        */
+#ifndef NSAMP
 #define NSAMP      5000    /* Maximum number of QUIPS measurements            */
                            /* Increase if needed, e.g. if ADVANCE is smaller  */
+#endif
+
+#ifndef NTRIAL
 #define NTRIAL     5       /* Normal number of times to run a trial           */
                            /* Increase if computer is prone to interruption   */
-#define PATIENCE   7       /* Number of times to rerun a bogus trial          */
+#endif
+
+#ifndef PATIENCE
+#define PATIENCE   10      /* Number of times to rerun a bogus trial          */
+#enif
+
+#ifndef RUNTM
 #define RUNTM      0.5     /* Target time, seconds. Reduce for high-res timer.*/
                            /* Should be much larger than timer resolution.    */
+#endif
+
+#ifndef STOPRT
 #define STOPRT     0.15    /* Ratio of current to peak QUIPS to stop at       */
                            /* Smaller numbers will beat on virtual memory.    */
+#endif
+
+#ifndef STOPTM
 #define STOPTM     60      /* Longest time acceptable, seconds.  Most systems */
                            /* run out of decent-speed memory well before this */
+#endif
+
 #define MXPROC     32      /* Maximum number of processors to use in shared   */                           /* memory configuration. Adjust as necessary.      */
 
 /******************************************************************************/
