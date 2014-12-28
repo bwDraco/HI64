@@ -108,7 +108,7 @@
 
 #ifndef PATIENCE
 #define PATIENCE   10      /* Number of times to rerun a bogus trial          */
-#enif
+#endif
 
 #ifndef RUNTM
 #define RUNTM      0.5     /* Target time, seconds. Reduce for high-res timer.*/
