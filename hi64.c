@@ -247,7 +247,7 @@ if (memlimit < 0x7fffffffffffffffLL)
     }
     memuse = (int64_t)(qdata[i-1].n * (sizeof(RECT)+sizeof(DSIZE)+sizeof(ISIZE)));
     if ((qprat > STOPRT) && (eflag == NOMEM))
-        printf("\nThis run was memory limited at %I64d subintervals -> $I64d bytes\n",
+        printf("\nThis run was memory limited at %I64d subintervals -> %I64d bytes\n",
                                                  (int64_t)n, (int64_t)memuse);
     printf("\nDone with first pass. Now computing net QUIPS\n");
 
