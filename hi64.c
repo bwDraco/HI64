@@ -70,7 +70,10 @@ int main(int argc, char *argv[])
             ibits,        /* Number of bits for imax                          */
             i, j, k,      /* Loop counters                                    */
             laps,         /* Approximate number of laps in a trial            */
-            memuse;       /* Amount of memory used, in bytes                  */
+            memuse,       /* Amount of memory used, in bytes                  */
+            memuse2,      /* Same as memuse, but for keeping track of memory  */
+                          /* usage during each loop for memory limiting       */
+            memlimit;     /* Memory limit                                     */
 
     char*   suffix;       /* Suffix for data.suffix directory                 */
 
@@ -91,12 +94,23 @@ int main(int argc, char *argv[])
     printf("---------------------------------------------------------\n");
 	printf("RECT is %d bytes\n",sizeof(RECT));
 
+if (argc >= 2) {
+    memlimit = (int64_t)strtol(argv[1], NULL, 10) * 1048576;
+}
+else
+    memlimit = 0x7fffffffffffffffLL;
+
+if (memlimit <= 0)
+    memlimit = 0x7fffffffffffffffLL;
+if (memlimit < 0x7fffffffffffffffLL)
+    printf("Memory use limited to %I64d MB\n", memlimit / 1048576 );
+
 #ifdef DEBUG
     curv = stdout;
 #else
     suffix="";
-    if (argc>=2) {
-      suffix=argv[1];
+    if (argc>=3) {
+      suffix=argv[2];
     }
     snprintf(filnm, 80, "data%s/%s", suffix, argv[0]);
     if ((curv = fopen(filnm, "w")) == NULL)
@@ -200,8 +214,9 @@ int main(int argc, char *argv[])
 
 
  /* This loop is the main loop driver of the HINT kernel.                     */
-    for (t = 0, i = 0, n = NMIN, qpeak = 0, qprat = 1; 
-        ((i < NSAMP) && (t < STOPTM) && (n < scx) && (qprat > STOPRT));
+    for (t = 0, i = 0, n = NMIN, qpeak = 0, qprat = 1, memuse2 = 0; 
+        ((i < NSAMP) && (t < STOPTM) && (n < scx) && (qprat > STOPRT)
+            && (memuse2 < memlimit * ADVANCE));
         i++, n = ((int64_t)(n * ADVANCE) > n)? (n * ADVANCE) : n + 1)
     {     
         printf(".");
@@ -228,6 +243,7 @@ int main(int argc, char *argv[])
         qdata[i].n  = n;
         qpeak = MAX(qpeak, quips);
         qprat = quips / qpeak;
+        memuse2 = (int64_t)(qdata[i].n * (sizeof(RECT)+sizeof(DSIZE)+sizeof(ISIZE)));
     }
     memuse = (int64_t)(qdata[i-1].n * (sizeof(RECT)+sizeof(DSIZE)+sizeof(ISIZE)));
     if ((qprat > STOPRT) && (eflag == NOMEM))
