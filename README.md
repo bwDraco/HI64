@@ -110,7 +110,7 @@ to run per trial. Notable options include:
    longer than the following trial, it is treated as having taken as long as the
    following trial. Increasing the `PATIENCE` value may increase net QUIPS
    especially on systems with frequent interrupts but may also cause the
-   benchmark to take longer to finish. The default is `7`.
+   benchmark to take longer to finish. The default is `10`.
  - `RUNTM`: The minimum time to run each trial, in seconds. HI64 will use this
    value to determine how many laps to run in earlier trials so that there are
    enough laps to fill `RUNTM` seconds, but in any case no less than `NTRIAL`
