@@ -27,3 +27,10 @@
  - Updated documentation to reflect the memory limiting feature.
  - Increased the maximum file name length to 200 characters.
  - Minor stylistic changes in code.
+
+## 0.3.2 (December 28, 2014)
+
+ - Fixed a bug in the memory limiting code which caused execution to continue
+   two trials past the limit.
+ - Fixed a bug affecting the filename string buffer limiting the filename to 80
+   characters rather than the intended 160.

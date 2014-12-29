@@ -27,7 +27,7 @@
 int main(int argc, char *argv[])
 {
     FILE    *curv;        /* Output file for QUIPS curve                      */
-    char    filnm[200];   /* Output file name                                 */
+    char    filnm[160];   /* Output file name                                 */
 
     Speed   qdata[NSAMP]; /* Array to keep track of QUIPs and time            */
 
@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
             qpnet,        /* Net QUIPS; integral of QUIPS d(log t)            */
             qpeak,        /* Peak QUIPS attained                              */
             qprat,        /* Ratio of current QUIPS to peak QUIPS             */
-			qptmp,        /* QUIPS temporary for calculating Net QUIPS        */
+            qptmp,        /* QUIPS temporary for calculating Net QUIPS        */
             t,            /* Time for a given trial                           */
             t0,           /* Starting time                                    */
             t1,           /* Ending time                                      */
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 
     char*   suffix;       /* Suffix for data.suffix directory                 */
 
-    printf("\nHI64 System Benchmark, Version 0.3.1");
+    printf("\nHI64 System Benchmark, Version 0.3.2");
     printf(" (December 28, 2014)\n");
     printf("Derived from HINT originally developed by");
     printf(" John L. Gustafson & Quinn O. Snell,\n");
@@ -112,7 +112,7 @@ if (memlimit < 0x7fffffffffffffffLL)
     if (argc>=3) {
       suffix=argv[2];
     }
-    snprintf(filnm, 80, "data%s/%s", suffix, argv[0]);
+    snprintf(filnm, 160, "data%s/%s", suffix, argv[0]);
     if ((curv = fopen(filnm, "w")) == NULL)
     {
         printf("Could not open data file\n");
@@ -216,7 +216,7 @@ if (memlimit < 0x7fffffffffffffffLL)
  /* This loop is the main loop driver of the HINT kernel.                     */
     for (t = 0, i = 0, n = NMIN, qpeak = 0, qprat = 1, memuse2 = 0; 
         ((i < NSAMP) && (t < STOPTM) && (n < scx) && (qprat > STOPRT)
-            && (memuse2 < memlimit * ADVANCE));
+            && (memuse2 * ADVANCE < memlimit));
         i++, n = ((int64_t)(n * ADVANCE) > n)? (n * ADVANCE) : n + 1)
     {     
         printf(".");
