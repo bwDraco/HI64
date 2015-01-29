@@ -77,15 +77,15 @@ int main(int argc, char *argv[])
 
     char*   suffix;       /* Suffix for data.suffix directory                 */
 
-    printf("\nHI64 System Benchmark, Version 0.3.2");
-    printf(" (December 28, 2014)\n");
+    printf("\nHI64 System Benchmark, Version 0.3.3");
+    printf(" (January 29, 2015)\n");
     printf("Derived from HINT originally developed by");
     printf(" John L. Gustafson & Quinn O. Snell,\n");
     printf("Scalable Computing Laboratory, Iowa State University\n\n");
     printf("Portions Copyright (C) 1994");
     printf(" Iowa State University Research Foundation, Inc.\n");
     printf("Portions Copyright (C) 2003 Moritz Franosch\n");
-    printf("Portions Copyright (C) 2014 Brian \"DragonLord\" Wong\n\n");
+    printf("Portions Copyright (C) 2014-2015 Brian \"DragonLord\" Wong\n\n");
     printf("This program is licensed under the GNU GPL; see COPYING.txt.\n");
     printf("NO WARRANTY OF ANY KIND IS PROVIDED, including any implied");
     printf(" warranty of\nmerchantability or fitness for a particular");

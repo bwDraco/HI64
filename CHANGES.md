@@ -34,3 +34,8 @@
    two trials past the limit.
  - Fixed a bug affecting the filename string buffer limiting the filename to 80
    characters rather than the intended 160.
+
+## 0.3.3 (January 29, 2015)
+
+ - Fixed a bug in the Makefile that resulted in binaries not being generated for
+   single-precision floating-point computations.
